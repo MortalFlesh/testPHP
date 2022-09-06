@@ -1,0 +1,21 @@
+{
+    "name": "tools/coding-standards",
+    "require-dev": {
+        "lmc/coding-standard": "^3.3"
+    },
+    "authors": [
+        {
+            "name": "Petr Chromec",
+            "email": "mortal_flesh@seznam.cz"
+        }
+    ],
+    "scripts": {
+        "link": "cd ../../bin/ && ln -sf ../tools/coding-standards/vendor/bin/ecs ecs"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

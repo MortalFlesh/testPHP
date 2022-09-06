@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd" colors="true"
+         bootstrap="vendor/autoload.php">
+    <php>
+        <!-- E_ALL = 30719 -->
+        <ini name="error_reporting" value="30719"/>
+
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="SYMFONY_PHPUNIT_REMOVE" value=""/>
+        <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
+
+        <env name="KERNEL_CLASS" value="App\Kernel"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="App Test Suite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+        <exclude>
+            <directory>src/*/*Bundle/Controller</directory>
+            <directory>src/*/*Bundle/DependencyInjection</directory>
+            <directory>src/*/*Bundle/Enum</directory>
+            <directory>src/*/*Bundle/Exception</directory>
+            <directory>src/*/*Bundle/Repository</directory>
+            <directory>src/*/*Bundle/Resources</directory>
+            <directory suffix="Bundle.php">src/*/*Bundle</directory>
+        </exclude>
+        <report>
+            <clover outputFile="./code-coverage/clover.xml"/>
+            <html outputDirectory="./code-coverage" highLowerBound="90"/>
+        </report>
+    </coverage>
+
+    <logging>
+        <junit outputFile="./code-coverage/junit.xml"/>
+    </logging>
+</phpunit>
