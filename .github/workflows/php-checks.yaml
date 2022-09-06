@@ -1,0 +1,35 @@
+name: PHP - Checks
+
+on:
+    push:
+    pull_request:
+    #schedule:
+    #    -   cron:  '0 3 * * *'
+
+jobs:
+    checks:
+        runs-on: ubuntu-latest
+        name: PHP 8.1 - checks
+        steps:
+            # Setup
+            -   uses: actions/checkout@v2
+
+            -   name: '[PHP] Setup'
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    extensions: mbstring, intl
+
+            # Prepare application
+            -   name: '[INIT] Install dependencies'
+                run: composer install
+
+            # Check application
+            -   name: '[CHECK] codestyle'
+                run: composer analyze
+
+            -   name: '[CHECK] phpstan - src'
+                run: composer phpstan
+
+            -   name: '[CHECK] Unit tests'
+                run: composer test-ci
