@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Interview\BonusDiscount;
 use App\Interview\Customer;
 use App\Interview\FixedDiscount;
 use App\Interview\Order;
@@ -43,5 +44,8 @@ class InterviewTest extends TestCase
         $this->assertEquals((220 + 30 + 45 - 15) * (100 - 10) / 100 + (90 + 1200) * (100 - 20) / 100 + 25 + 60, $total);
 
         // bonus: add new discount for services with rule when amount > 50 subtracts 10 otherwise 0
+        $customer->addDiscount(OrderCategory::SERVICES, new BonusDiscount());
+        $total = $customer->getTotalPriceWithDiscount();
+        $this->assertEquals((220 + 30 + 45 - 15) * (100 - 10) / 100 + (90 + 1200) * (100 - 20) / 100 + (25 + 60 - 10), $total);
     }
 }
