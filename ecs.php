@@ -12,6 +12,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'PHP_CodeSniffer\Standards\Generic\Sniffs\PHP\ForbiddenFunctionsSniff.Found' => [
                 'src/Kernel.php',
             ],
+            'Lmc\CodingStandard\Sniffs\Naming\AbstractClassNameSniff' => [
+                'src/Interview/Discount.php',
+            ],
         ]);
 
     $containerConfigurator->import(__DIR__ . '/tools/coding-standards/vendor/lmc/coding-standard/ecs.php');

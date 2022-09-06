@@ -1,5 +1,6 @@
 parameters:
     ignoreErrors:
+        - '#Parameter \#1 \$callback of method MF\\Collection\\Immutable\\Generic\\IList.*?::sortByDescending\(\) expects .*#'
 
     excludePaths:
         - src/Kernel.php
